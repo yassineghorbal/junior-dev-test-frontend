@@ -1,0 +1,80 @@
+%btn {
+  padding: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0 5px;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  }
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 30px 0 30px;
+  #save-btn {
+    @extend %btn;
+  }
+  #cancel-btn {
+    @extend %btn;
+  }
+}
+
+#product_form {
+  %input {
+    display: block;
+    margin: 10px;
+    // width: 200px;
+    width: auto;
+  }
+
+  width: 40%;
+  margin: 70px auto;
+  label {
+    margin: 10px;
+    display: flex;
+    gap: 50px;
+  }
+  #sku {
+    @extend %input;
+  }
+  #name {
+    @extend %input;
+  }
+  #price {
+    @extend %input;
+  }
+  #prodyctType {
+    @extend %input;
+  }
+  #size {
+    @extend %input;
+  }
+  #height {
+    @extend %input;
+  }
+  #width {
+    @extend %input;
+  }
+  #length {
+    @extend %input;
+  }
+  #weight {
+    @extend %input;
+  }
+
+  // special inputs
+  %special-input {
+    display: none;
+  }
+  #dvd-input {
+    @extend %special-input;
+  }
+  #furniture-input {
+    @extend %special-input;
+  }
+  #book-input {
+    @extend %special-input;
+  }
+}
