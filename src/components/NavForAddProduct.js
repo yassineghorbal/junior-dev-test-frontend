@@ -6,7 +6,7 @@ const NavForaddProduct = () => {
         <nav className="navbar">
             <h2>Product Add</h2>
             <div>
-                <button type="submit" id="save-btn">Save</button>
+                <button type="submit" id="save-btn" form='product_form'>Save</button>
                 <NavLink to='/'><button id="cancel-btn">Cancel</button></NavLink>
             </div>
         </nav>

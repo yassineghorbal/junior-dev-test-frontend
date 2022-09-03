@@ -4,7 +4,7 @@ import '../scss/product.scss'
 const Product = ({ props }) => {
     return (
         <div className="product-container">
-            <input type={"checkbox"} className={"delete-checkbox"} />
+            <input type={"checkbox"} className={"delete-checkbox"} value={props.id} />
             <p>{props.sku}</p>
             <p>{props.name}</p>
             <p>{props.price} $</p>

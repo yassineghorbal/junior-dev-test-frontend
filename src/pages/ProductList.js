@@ -24,14 +24,16 @@ export default class ProductList extends React.Component {
                 <NavForProductList />
                 <hr></hr>
                 <div className="products-container">
-                    <ul>
-                        {
-                            this.state.products
-                                .map(product =>
-                                    <Product key={product.id} props={product} />
-                                )
-                        }
-                    </ul>
+                    <form action="http://localhost/junior-dev-test/backend/api/delete.php" method="POST" id="all_products">
+                        <ul>
+                            {
+                                this.state.products
+                                    .map(product =>
+                                        <Product key={product.id} props={product} />
+                                    )
+                            }
+                        </ul>
+                    </form>
                 </div>
                 <Footer />
             </div>
