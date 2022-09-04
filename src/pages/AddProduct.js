@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import NavForaddProduct from "../components/NavForAddProduct";
 import '../scss/addProduct.scss'
@@ -16,9 +17,9 @@ function AddProduct() {
         unit: '',
         size: '',
         weight: '',
-        height: '',
-        width: '',
-        length: '',
+        height: '1',
+        width: '1',
+        length: '1',
     })
 
     function handleChange(e) {
@@ -42,6 +43,8 @@ function AddProduct() {
             document.getElementById('book-input').style.display = 'block';
         }
     }
+
+    let navigate = useNavigate()
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -68,11 +71,17 @@ function AddProduct() {
         }
 
         // sending data using axios
-        axios.post(url, product)
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-            })
+        if (product.sku.length > 0 && product.name.length > 0 && product.price.length > 0 && product.attribute.length > 0 && product.value.length > 0) {
+            axios.post(url, product)
+                .then(res => {
+                    console.log(res);
+                    console.log(res.data);
+                    return navigate('/')
+                })
+        } else {
+            document.getElementById('error').style.display = 'block'
+            console.log('Cant Submit')
+        }
 
         console.log(product);
 
@@ -82,6 +91,8 @@ function AddProduct() {
             <NavForaddProduct />
             <hr></hr>
             <form id="product_form" onSubmit={(e) => handleSubmit(e)}>
+                {/* Error Message */}
+                <p id="error">Please, submit required data</p>
                 <label>
                     <p>SKU</p>
                     <input type="text" name="sku" id="sku" onChange={(e) => handleChange(e)} value={data.sku} />
@@ -111,7 +122,7 @@ function AddProduct() {
                     <p className="description">Please, provide size</p>
                 </div>
 
-                {/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */}
+                {/* Furniture Input Start */}
                 <div id="furniture-input">
                     <label>
                         <p>Height (CM)</p>
@@ -127,7 +138,7 @@ function AddProduct() {
                     </label>
                     <p className="description">Please, provide dimensions</p>
                 </div>
-                {/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */}
+                {/* Furniture Input End */}
 
                 <div id="book-input">
                     <label>
