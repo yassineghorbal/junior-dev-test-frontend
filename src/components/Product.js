@@ -8,7 +8,7 @@ const Product = ({ props }) => {
             <p>{props.sku}</p>
             <p>{props.name}</p>
             <p>{props.price} $</p>
-            <p>{props.attribute}: {props.value}</p>
+            <p>{props.attribute}: {props.value} {props.unit}</p>
         </div>
     )
 }
