@@ -24,7 +24,7 @@ export default class ProductList extends React.Component {
                 <NavForProductList />
                 <hr></hr>
                 <div className="products-container">
-                    <form action="http://localhost/junior-dev-test/backend/api/delete.php" method="POST" id="all_products">
+                    <form action="http://localhost/junior-dev-test-backend/api/delete.php" method="POST" id="all_products">
                         <ul>
                             {
                                 this.state.products
