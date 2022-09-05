@@ -17,9 +17,9 @@ function AddProduct() {
         unit: '',
         size: '',
         weight: '',
-        height: '1',
-        width: '1',
-        length: '1',
+        height: '',
+        width: '',
+        length: '',
     })
 
     function handleChange(e) {
@@ -76,6 +76,7 @@ function AddProduct() {
                 .then(res => {
                     console.log(res);
                     console.log(res.data);
+                    console.log(product);
                     return navigate('/')
                 })
         } else {
@@ -83,7 +84,6 @@ function AddProduct() {
             console.log('Cant Submit')
         }
 
-        console.log(product);
 
     }
     return (
@@ -93,6 +93,7 @@ function AddProduct() {
             <form id="product_form" onSubmit={(e) => handleSubmit(e)}>
                 {/* Error Message */}
                 <p id="error">Please, submit required data</p>
+
                 <label>
                     <p>SKU</p>
                     <input type="text" name="sku" id="sku" onChange={(e) => handleChange(e)} value={data.sku} />

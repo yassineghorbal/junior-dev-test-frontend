@@ -22,7 +22,7 @@
 }
 
 #product_form {
-  %input {
+  input {
     display: block;
     margin: 10px;
     // width: 200px;
@@ -36,44 +36,13 @@
     display: flex;
     gap: 50px;
   }
-  #sku {
-    @extend %input;
-  }
-  #name {
-    @extend %input;
-  }
-  #price {
-    @extend %input;
-  }
-  #prodyctType {
-    @extend %input;
-  }
-  #size {
-    @extend %input;
-  }
-  #height {
-    @extend %input;
-  }
-  #width {
-    @extend %input;
-  }
-  #length {
-    @extend %input;
-  }
-  #weight {
-    @extend %input;
-  }
 
   // special inputs
   %special-input {
     display: none;
   }
-  #dvd-input {
-    @extend %special-input;
-  }
-  #furniture-input {
-    @extend %special-input;
-  }
+  #dvd-input,
+  #furniture-input,
   #book-input {
     @extend %special-input;
   }

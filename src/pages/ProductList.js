@@ -48,6 +48,7 @@ export default class ProductList extends React.Component {
                 window.location.reload(false);
             }
         } else {
+            console.log("cant delete");
             return
         }
 
