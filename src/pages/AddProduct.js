@@ -136,7 +136,7 @@ function AddProduct() {
                         <p>Length (CM)</p>
                         <input type="number" id="length" name="length" onChange={(e) => handleChange(e)} value={data.length} />
                     </label>
-                    <p className="description">Please, provide dimensions</p>
+                    <p className="description">Please, provide dimensions in HxWxL format</p>
                 </div>
                 {/* Furniture Input End */}
 
