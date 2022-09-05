@@ -8,7 +8,8 @@ import '../scss/productsList.scss'
 export default class ProductList extends React.Component {
     state = {
         products: [],
-        id: ''
+        id: '',
+        ids: []
     }
 
     // create produt using axios
@@ -23,23 +24,33 @@ export default class ProductList extends React.Component {
     // delete product
     handleChange = e => {
         this.setState({ id: e.target.value });
-        console.log(e.target.value);
+        if (!this.state.ids.includes(e.target.value)) {
+            this.state.ids.push(e.target.value);
+        } else {
+            let i = this.state.ids.indexOf(e.target.value)
+            this.state.ids.splice(i, 1);
+        }
+        // console.log(e.target.value);
+        console.log(this.state.ids);
     }
 
     handleSubmit = e => {
         e.preventDefault();
+        let ids = this.state.ids
+        if (ids.length > 0) {
+            for (let i = 0; i <= ids.length; i++) {
 
-        axios.delete(`http://localhost/junior-dev-test-backend/api/delete.php`, {
-            data: {
-                "id": this.state.id
-            }
-        })
-            .then((res) => {
-                console.log(res);
-                console.log(res.data);
-                console.log(this.state.id);
+                axios.delete(`http://localhost/junior-dev-test-backend/api/delete.php`, {
+                    data: {
+                        "id": ids[i]
+                    }
+                })
                 window.location.reload(false);
-            })
+            }
+        } else {
+            return
+        }
+
     }
 
     render() {
