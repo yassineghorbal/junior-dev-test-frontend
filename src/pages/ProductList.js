@@ -30,8 +30,6 @@ export default class ProductList extends React.Component {
             let i = this.state.ids.indexOf(e.target.value)
             this.state.ids.splice(i, 1);
         }
-        // console.log(e.target.value);
-        console.log(this.state.ids);
     }
 
     handleSubmit = e => {
@@ -45,10 +43,13 @@ export default class ProductList extends React.Component {
                         "id": ids[i]
                     }
                 })
-                window.location.reload(false);
             }
+            axios.get(`http://127.0.0.1/junior-dev-test-backend/api/read.php`)
+                .then(res => {
+                    const products = res.data.data;
+                    this.setState({ products });
+                })
         } else {
-            console.log("cant delete");
             return
         }
 
@@ -63,10 +64,9 @@ export default class ProductList extends React.Component {
                     <form id="all_products" onSubmit={this.handleSubmit}>
                         <ul>
                             {
-                                this.state.products
-                                    .map(product =>
-                                        <Product key={product.id} props={product} handleChange={this.handleChange} />
-                                    )
+                                this.state.products?.map(product =>
+                                    <Product key={product.id} props={product} handleChange={this.handleChange} />
+                                )
                             }
                         </ul>
                     </form>

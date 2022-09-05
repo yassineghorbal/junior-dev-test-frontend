@@ -73,15 +73,24 @@ function AddProduct() {
         // sending data using axios
         if (product.sku.length > 0 && product.name.length > 0 && product.price.length > 0 && product.attribute.length > 0 && product.value.length > 0) {
             axios.post(url, product)
-                .then(res => {
-                    console.log(res);
-                    console.log(res.data);
-                    console.log(product);
+                .then((res) => {
                     return navigate('/')
+                }).catch(error => {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log("Error", error.message);
+                    }
+                    if (error.response.status === 500) {
+                        document.getElementById('sku_error').style.display = 'block'
+                    }
                 })
         } else {
             document.getElementById('error').style.display = 'block'
-            console.log('Cant Submit')
         }
 
 
@@ -91,8 +100,9 @@ function AddProduct() {
             <NavForaddProduct />
             <hr></hr>
             <form id="product_form" onSubmit={(e) => handleSubmit(e)}>
-                {/* Error Message */}
+                {/* Error Messages */}
                 <p id="error">Please, submit required data</p>
+                <p id="sku_error">This SKU code already exists</p>
 
                 <label>
                     <p>SKU</p>

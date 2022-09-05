@@ -2,7 +2,6 @@ import React from "react";
 import '../scss/product.scss'
 
 const Product = ({ props, handleChange }) => {
-
     return (
         <div className="product-container">
             <input type={"checkbox"} className={"delete-checkbox"} value={props.id} onChange={handleChange} />
