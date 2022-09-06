@@ -7,8 +7,8 @@ import '../scss/productsList.scss'
 
 export default class ProductList extends React.Component {
 
-    url_read = 'https://junior-dev-test-api.000webhostapp.com/api/read.php'
-    url_delete = 'https://junior-dev-test-api.000webhostapp.com/api/delete.php'
+    url_read = 'http://junior-dev-test-backend.22web.org/api/read.php'
+    url_delete = 'http://junior-dev-test-backend.22web.org/api/delete.php'
 
     state = {
         products: [],

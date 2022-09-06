@@ -7,7 +7,7 @@ import '../scss/addProduct.scss'
 
 function AddProduct() {
 
-    const url_create = 'https://junior-dev-test-api.000webhostapp.com/api/create.php'
+    const url_create = 'http://junior-dev-test-backend.22web.org/api/create.php'
     const [data, setData] = useState({
         sku: '',
         name: '',
