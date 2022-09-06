@@ -7,7 +7,6 @@ import '../scss/addProduct.scss'
 
 function AddProduct() {
 
-    const url = 'http://localhost/junior-dev-test-backend/api/create.php';
     const [data, setData] = useState({
         sku: '',
         name: '',
@@ -72,22 +71,11 @@ function AddProduct() {
 
         // sending data using axios
         if (product.sku.length > 0 && product.name.length > 0 && product.price.length > 0 && product.attribute.length > 0 && product.value.length > 0) {
-            axios.post(url, product)
-                .then((res) => {
+            axios.post(`https://rest-api-junior-dev-test.000webhostapp.com/api/create.php`, { product })
+                .then(res => {
+                    console.log(res);
+                    console.log(res.data);
                     return navigate('/')
-                }).catch(error => {
-                    if (error.response) {
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.headers);
-                    } else if (error.request) {
-                        console.log(error.request);
-                    } else {
-                        console.log("Error", error.message);
-                    }
-                    if (error.response.status === 500) {
-                        document.getElementById('sku_error').style.display = 'block'
-                    }
                 })
         } else {
             document.getElementById('error').style.display = 'block'

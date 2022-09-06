@@ -14,10 +14,11 @@ export default class ProductList extends React.Component {
 
     // create produt using axios
     componentDidMount() {
-        axios.get(`http://127.0.0.1/junior-dev-test-backend/api/read.php`)
+        axios.get(`https://rest-api-junior-dev-test.000webhostapp.com/api/read.php`)
             .then(res => {
                 const products = res.data.data;
                 this.setState({ products });
+                console.log(products);
             })
     }
 
@@ -30,6 +31,7 @@ export default class ProductList extends React.Component {
             let i = this.state.ids.indexOf(e.target.value)
             this.state.ids.splice(i, 1);
         }
+        console.log(this.state.ids);
     }
 
     handleSubmit = e => {
@@ -38,13 +40,13 @@ export default class ProductList extends React.Component {
         if (ids.length > 0) {
             for (let i = 0; i <= ids.length; i++) {
 
-                axios.delete(`http://localhost/junior-dev-test-backend/api/delete.php`, {
+                axios.delete(`https://rest-api-junior-dev-test.000webhostapp.com/api/delete.php`, {
                     data: {
                         "id": ids[i]
                     }
                 })
             }
-            axios.get(`http://127.0.0.1/junior-dev-test-backend/api/read.php`)
+            axios.get(`https://rest-api-junior-dev-test.000webhostapp.com/api/read.php`)
                 .then(res => {
                     const products = res.data.data;
                     this.setState({ products });
