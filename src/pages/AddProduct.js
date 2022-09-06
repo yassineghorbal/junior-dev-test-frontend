@@ -7,6 +7,7 @@ import '../scss/addProduct.scss'
 
 function AddProduct() {
 
+    const url_create = 'https://junior-dev-test-api.000webhostapp.com/api/create.php'
     const [data, setData] = useState({
         sku: '',
         name: '',
@@ -71,7 +72,7 @@ function AddProduct() {
 
         // sending data using axios
         if (product.sku.length > 0 && product.name.length > 0 && product.price.length > 0 && product.attribute.length > 0 && product.value.length > 0) {
-            axios.post(`https://rest-api-junior-dev-test.000webhostapp.com/api/create.php`, { product })
+            axios.post(url_create, product)
                 .then(res => {
                     console.log(res);
                     console.log(res.data);

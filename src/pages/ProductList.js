@@ -6,6 +6,10 @@ import Product from "../components/Product";
 import '../scss/productsList.scss'
 
 export default class ProductList extends React.Component {
+
+    url_read = 'https://junior-dev-test-api.000webhostapp.com/api/read.php'
+    url_delete = 'https://junior-dev-test-api.000webhostapp.com/api/delete.php'
+
     state = {
         products: [],
         id: '',
@@ -14,11 +18,10 @@ export default class ProductList extends React.Component {
 
     // create produt using axios
     componentDidMount() {
-        axios.get(`https://rest-api-junior-dev-test.000webhostapp.com/api/read.php`)
+        axios.get(this.url_read)
             .then(res => {
                 const products = res.data.data;
                 this.setState({ products });
-                console.log(products);
             })
     }
 
@@ -38,15 +41,14 @@ export default class ProductList extends React.Component {
         e.preventDefault();
         let ids = this.state.ids
         if (ids.length > 0) {
-            for (let i = 0; i <= ids.length; i++) {
-
-                axios.delete(`https://rest-api-junior-dev-test.000webhostapp.com/api/delete.php`, {
+            for (let i = 0; i < ids.length; i++) {
+                axios.delete(this.url_delete, {
                     data: {
                         "id": ids[i]
                     }
                 })
             }
-            axios.get(`https://rest-api-junior-dev-test.000webhostapp.com/api/read.php`)
+            axios.get(this.url_read)
                 .then(res => {
                     const products = res.data.data;
                     this.setState({ products });
