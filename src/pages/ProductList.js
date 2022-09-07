@@ -7,9 +7,6 @@ import '../scss/productsList.scss'
 
 export default class ProductList extends React.Component {
 
-    url_read = 'https://junior-dev-test-api.000webhostapp.com/api/read.php'
-    url_delete = 'https://junior-dev-test-api.000webhostapp.com/api/delete.php'
-
     state = {
         products: [],
         id: '',
@@ -18,7 +15,7 @@ export default class ProductList extends React.Component {
 
     // create produt using axios
     componentDidMount() {
-        axios.get(this.url_read)
+        axios.get("/read.php")
             .then(res => {
                 const products = res.data.data;
                 this.setState({ products });
@@ -42,21 +39,19 @@ export default class ProductList extends React.Component {
         let ids = this.state.ids
         if (ids.length > 0) {
             for (let i = 0; i < ids.length; i++) {
-                axios.delete(this.url_delete, {
+                axios.delete("/delete.php", {
                     data: {
                         "id": ids[i]
-                    },
-                    headers: {
-                        "Content-Type": "application/json"
                     }
                 }).catch(error => console.log(error))
             }
-            axios.get(this.url_read)
+            axios.get("/read.php")
                 .then(res => {
                     const products = res.data.data;
                     this.setState({ products });
                 }).catch(error => console.log(error))
         } else {
+            console.log('no');
             return
         }
 
