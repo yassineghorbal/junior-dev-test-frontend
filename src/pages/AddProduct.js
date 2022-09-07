@@ -71,7 +71,7 @@ function AddProduct() {
 
         // sending data using axios
         if (product.sku.length > 0 && product.name.length > 0 && product.price.length > 0 && product.attribute.length > 0 && product.value.length > 0) {
-            axios.post("/create.php", product, {
+            axios.post("http://ec2-3-89-196-32.compute-1.amazonaws.com/dashboard/api/create.php", product, {
                 headers: {
                     "Content-Type": "application/json"
                 }

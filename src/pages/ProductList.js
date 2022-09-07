@@ -15,7 +15,7 @@ export default class ProductList extends React.Component {
 
     // create produt using axios
     componentDidMount() {
-        axios.get("/read.php")
+        axios.get("http://ec2-3-89-196-32.compute-1.amazonaws.com/dashboard/api/read.php")
             .then(res => {
                 const products = res.data.data;
                 this.setState({ products });
@@ -39,13 +39,13 @@ export default class ProductList extends React.Component {
         let ids = this.state.ids
         if (ids.length > 0) {
             for (let i = 0; i < ids.length; i++) {
-                axios.delete("/delete.php", {
+                axios.delete("http://ec2-3-89-196-32.compute-1.amazonaws.com/dashboard/api/delete.php", {
                     data: {
                         "id": ids[i]
                     }
                 }).catch(error => console.log(error))
             }
-            axios.get("/read.php")
+            axios.get("http://ec2-3-89-196-32.compute-1.amazonaws.com/dashboard/api/read.php")
                 .then(res => {
                     const products = res.data.data;
                     this.setState({ products });
