@@ -2,7 +2,8 @@
   "name": "junior-dev-test-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://junior-dev-test-frontend.netlify.app",
+  "proxy": "https://junior-dev-test-api.000webhostapp.com",
+  "homepage": "https://junior-dev-test-frontend.netlify.app/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
