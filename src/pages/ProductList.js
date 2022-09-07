@@ -7,8 +7,8 @@ import '../scss/productsList.scss'
 
 export default class ProductList extends React.Component {
 
-    url_read = 'http://junior-dev-test-backend.22web.org/api/read.php'
-    url_delete = 'http://junior-dev-test-backend.22web.org/api/delete.php'
+    url_read = 'https://junior-dev-test-api.000webhostapp.com/api/read.php'
+    url_delete = 'https://junior-dev-test-api.000webhostapp.com/api/delete.php'
 
     state = {
         products: [],
@@ -22,7 +22,7 @@ export default class ProductList extends React.Component {
             .then(res => {
                 const products = res.data.data;
                 this.setState({ products });
-            })
+            }).catch(error => console.log(error))
     }
 
     // delete product
@@ -45,14 +45,17 @@ export default class ProductList extends React.Component {
                 axios.delete(this.url_delete, {
                     data: {
                         "id": ids[i]
+                    },
+                    headers: {
+                        "Content-Type": "application/json"
                     }
-                })
+                }).catch(error => console.log(error))
             }
             axios.get(this.url_read)
                 .then(res => {
                     const products = res.data.data;
                     this.setState({ products });
-                })
+                }).catch(error => console.log(error))
         } else {
             return
         }

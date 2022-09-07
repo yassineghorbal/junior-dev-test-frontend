@@ -7,7 +7,7 @@ import '../scss/addProduct.scss'
 
 function AddProduct() {
 
-    const url_create = 'http://junior-dev-test-backend.22web.org/api/create.php'
+    // const url_create = 'https://junior-dev-test-api.000webhostapp.com/api/create.php'
     const [data, setData] = useState({
         sku: '',
         name: '',
@@ -72,12 +72,17 @@ function AddProduct() {
 
         // sending data using axios
         if (product.sku.length > 0 && product.name.length > 0 && product.price.length > 0 && product.attribute.length > 0 && product.value.length > 0) {
-            axios.post(url_create, product)
+            axios.post("/create.php", product, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
                 .then(res => {
                     console.log(res);
                     console.log(res.data);
                     return navigate('/')
-                })
+                }).catch(error => console.log(error))
+            console.log(product);
         } else {
             document.getElementById('error').style.display = 'block'
         }
