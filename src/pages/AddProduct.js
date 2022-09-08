@@ -71,16 +71,17 @@ function AddProduct() {
 
         // sending data using axios
         if (product.sku.length > 0 && product.name.length > 0 && product.price.length > 0 && product.attribute.length > 0 && product.value.length > 0) {
-            axios.post("/create.php", product, {
+            (axios.post("/create.php", product, {
                 headers: {
                     "Content-Type": "application/json"
                 }
+            }).then(res => {
+                console.log(res);
+                console.log(res.data);
+                return navigate('/')
+            })).catch((e) => {
+                console.log(e);
             })
-                .then(res => {
-                    console.log(res);
-                    console.log(res.data);
-                    return navigate('/')
-                }).catch(error => console.log(error))
             console.log(product);
         } else {
             document.getElementById('error').style.display = 'block'
