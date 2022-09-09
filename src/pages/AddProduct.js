@@ -26,20 +26,24 @@ function AddProduct() {
         newData[e.target.name] = e.target.value
         setData(newData)
 
+        const dvdInput = document.getElementById('dvd-input');
+        const furnitureInput = document.getElementById('furniture-input');
+        const bookInput = document.getElementById('book-input');
+
         if (e.target.value === "Furniture") {
-            document.getElementById('dvd-input').style.display = 'none';
-            document.getElementById('furniture-input').style.display = 'block';
-            document.getElementById('book-input').style.display = 'none';
+            dvdInput.style.display = 'none';
+            furnitureInput.style.display = 'block';
+            bookInput.style.display = 'none';
         }
         else if (e.target.value === "DVD") {
-            document.getElementById('dvd-input').style.display = 'block';
-            document.getElementById('furniture-input').style.display = 'none';
-            document.getElementById('book-input').style.display = 'none';
+            dvdInput.style.display = 'block';
+            furnitureInput.style.display = 'none';
+            bookInput.style.display = 'none';
         }
         else if (e.target.value === "Book") {
-            document.getElementById('dvd-input').style.display = 'none';
-            document.getElementById('furniture-input').style.display = 'none';
-            document.getElementById('book-input').style.display = 'block';
+            dvdInput.style.display = 'none';
+            furnitureInput.style.display = 'none';
+            bookInput.style.display = 'block';
         }
     }
 
@@ -71,7 +75,7 @@ function AddProduct() {
 
         // sending data using axios
         if (product.sku.length > 0 && product.name.length > 0 && product.price.length > 0 && product.attribute.length > 0 && product.value.length > 0) {
-            (axios.post("/create.php", product, {
+            (axios.post("/create", product, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -80,9 +84,11 @@ function AddProduct() {
                 console.log(res.data);
                 return navigate('/')
             })).catch((e) => {
-                console.log(e);
+                console.log(e.response.status);
+                if (e.response.status === 500) {
+                    document.getElementById('sku_error').style.display = 'block'
+                }
             })
-            console.log(product);
         } else {
             document.getElementById('error').style.display = 'block'
         }
