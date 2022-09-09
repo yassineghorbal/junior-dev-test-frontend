@@ -35,7 +35,6 @@ export default class ProductList extends React.Component {
             let i = this.state.ids.indexOf(e.target.value)
             this.state.ids.splice(i, 1);
         }
-        console.log(this.state.ids);
     }
 
     handleSubmit = e => {
@@ -59,7 +58,6 @@ export default class ProductList extends React.Component {
                     }
                 })
         } else {
-            console.log('no');
             return
         }
 

@@ -84,7 +84,6 @@ function AddProduct() {
                 console.log(res.data);
                 return navigate('/')
             })).catch((e) => {
-                console.log(e.response.status);
                 if (e.response.status === 500) {
                     document.getElementById('sku_error').style.display = 'block'
                 }
