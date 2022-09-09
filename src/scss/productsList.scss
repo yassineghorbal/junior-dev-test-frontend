@@ -2,6 +2,10 @@
   hr {
     margin: 0 30px;
   }
+  #no_products {
+    display: none;
+    margin: 30px auto;
+  }
   .products-container {
     display: flex;
     flex-wrap: wrap;

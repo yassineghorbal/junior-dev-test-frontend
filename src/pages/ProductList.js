@@ -19,7 +19,11 @@ export default class ProductList extends React.Component {
             .then(res => {
                 const products = res.data.data;
                 this.setState({ products });
-            }).catch(error => console.log(error))
+            }).catch(e => {
+                if (e.response.status === 404) {
+                    document.getElementById('no_products').style.display = 'block';
+                }
+            })
     }
 
     // delete product
@@ -49,7 +53,11 @@ export default class ProductList extends React.Component {
                 .then(res => {
                     const products = res.data.data;
                     this.setState({ products });
-                }).catch(error => console.log(error))
+                }).catch(e => {
+                    if (e.response.status === 404) {
+                        document.getElementById('no_products').style.display = 'block';
+                    }
+                })
         } else {
             console.log('no');
             return
@@ -63,6 +71,7 @@ export default class ProductList extends React.Component {
                 <NavForProductList />
                 <hr></hr>
                 <div className="products-container">
+                    <p id="no_products">No products</p>
                     <form id="all_products" onSubmit={this.handleSubmit}>
                         <ul>
                             {
